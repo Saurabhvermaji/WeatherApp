@@ -1,21 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector , useDispatch } from 'react-redux';
-import { setvalue  } from '../slices/weatherSlice'
+import { fetchWeather } from '../slices/weatherSlice';
+import '../styles/weather.css'
 
 const Weather = () => {
-    const value = useSelector(state => state.weather.value)
+    const [city, setCity] = useState('')
     const dispatch = useDispatch();
+    const weather = useSelector((state) => state.weather);
 
-    const increment = () => {
-        dispatch(setvalue(value + 1));
-    }
+    const handleSearch = () => {
+        dispatch(fetchWeather(city));
+    };
 
     return (
-        <>
-            <h4>Welcome To Our Weather Application</h4>
-            <h3>{value}</h3>
-            <button onClick={increment}>Increment</button>
-        </>
+            <div className="weather-container">
+                <h1>Weather App</h1>
+                <input
+                    type="text"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    placeholder="Enter correct city"
+                />
+                <button onClick={handleSearch}>Search</button>
+
+                {weather.status === 'loading' && <p>Loading...</p>}
+                {weather.status === 'succeeded' && weather.data && (
+                    <div className="weather-info">
+                        <h2>{weather.data.name}</h2>
+                        <p>Temperature: {weather.data.main.temp} °C</p>
+                        <p>Weather: {weather.data.weather[0].description}</p>
+                    </div>
+                )}
+                {weather.status === 'failed' && <p>{weather.error}</p>}
+            </div>
     )
 }
 
