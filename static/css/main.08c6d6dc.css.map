@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.08c6d6dc.css","mappings":"AAAA,mBAEI,WAAY,CADZ,iBAEJ,CAEA,cACI,eACJ","sources":["styles/weather.css"],"sourcesContent":[".weather-container {\r\n    text-align: center;\r\n    margin: 20px;\r\n}\r\n\r\n.weather-info {\r\n    margin-top: 20px;\r\n}"],"names":[],"sourceRoot":""}
