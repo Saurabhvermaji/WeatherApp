@@ -10,6 +10,7 @@ const Weather = () => {
 
     const handleSearch = () => {
         dispatch(fetchWeather(city));
+        setCity('')
     };
 
     return (
@@ -19,7 +20,7 @@ const Weather = () => {
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    placeholder="Enter correct city"
+                    placeholder="Enter city"
                 />
                 <button onClick={handleSearch}>Search</button>
 
